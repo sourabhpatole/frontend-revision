@@ -11,8 +11,14 @@ function Folder({ explorer }) {
     setExpand(true);
     setShow({
       visible: true,
-      isFolder,
+      isFolder: true,
     });
+  };
+  const onAddFolder = (e) => {
+    if (e.keyCode === 13 && e.target.value) {
+      // add logic
+      setShow({ ...setShow, visible: false });
+    }
   };
   console.log(explorer);
   if (explorer.isFolder) {
@@ -35,6 +41,7 @@ function Folder({ explorer }) {
               <span>{show.isFolder ? "📁" : "📄"}</span>
               <input
                 type="text"
+                onKeyDown={onAddFolder}
                 className="inputContainer_input"
                 autoFocus
                 onBlur={() => setShow({ ...show, visible: false })}
